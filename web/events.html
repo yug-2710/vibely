@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>try{var t=localStorage.getItem("vibelyTheme");if(t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches)document.documentElement.dataset.theme="dark";}catch(e){}</script>
+  <title>Vibely – Events</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="events">
+  <script>try{if(!sessionStorage.getItem("vibelyUser")){window.addEventListener("pagereveal",e=>{try{if(e.viewTransition)e.viewTransition.skipTransition();}catch(_){}});location.replace("login.html");}}catch(e){}</script>
+  <header class="topbar">
+    <span class="logo">vibely</span>
+    <button type="button" class="nav-toggle" id="navToggle" aria-haspopup="true" aria-expanded="false" aria-controls="topbarNav" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="topbarNav">
+      <a href="dashboard.html">Home</a>
+      <a href="events.html" class="active">Events</a>
+      <a href="groups.html">Groups</a>
+      <a href="music.html">Music</a>
+      <a href="lostfound.html">Lost &amp; Found</a>
+      <a href="rides.html">Rides</a>
+      <a href="profile.html">Profile</a>
+    </nav>
+    <a href="messages.html" class="notif-btn" id="msgLink" aria-label="Messages">
+      <span aria-hidden="true">&#9993;</span><span id="msgBadge" class="notif-badge" hidden>0</span>
+    </a>
+    <a href="notifications.html" class="notif-btn" id="notifLink" aria-label="Notifications">
+      <span aria-hidden="true">&#128276;</span><span id="notifBadge" class="notif-badge" hidden>0</span>
+    </a>
+    <button id="logout" class="link">Log out</button>
+  </header>
+
+  <div class="search-bar">
+    <div class="search-wrap">
+      <input type="search" id="globalSearch" placeholder="Search Vibely" aria-label="Search people, events, groups, lost and found, rides" autocomplete="off">
+      <div class="search-results" id="searchResults" hidden></div>
+    </div>
+  </div>
+
+  <main class="home">
+    <h2>Campus events</h2>
+    <p class="sub">Workshops, fests, meetups &mdash; see what's happening and RSVP.</p>
+
+    <h3 class="section-title">All events</h3>
+    <div id="eventList" class="event-grid"></div>
+  </main>
+
+  <button type="button" class="fab" id="openEventForm" aria-haspopup="dialog" aria-controls="eventModal" aria-label="Create an event">+</button>
+
+  <div class="modal-overlay" id="eventModal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="eventModalTitle">
+      <button type="button" class="modal-close" aria-label="Close">&times;</button>
+      <section class="card form-card">
+        <h3 id="eventModalTitle">Create an event</h3>
+        <form id="eventForm" novalidate autocomplete="off">
+          <label for="evTitle">Title</label>
+          <input id="evTitle" type="text" maxlength="80" placeholder="e.g. Inter-block quiz night" required>
+
+          <label for="evCategory">Category</label>
+          <select id="evCategory">
+            <option value="">General</option>
+            <option>Sports</option>
+            <option>Cultural</option>
+            <option>Academic</option>
+            <option>Workshop</option>
+            <option>Social</option>
+          </select>
+
+          <label for="evLocation">Location</label>
+          <input id="evLocation" type="text" maxlength="120" placeholder="e.g. Main auditorium">
+
+          <div class="two-col">
+            <div>
+              <label for="evDate">Date</label>
+              <input id="evDate" type="date" required>
+            </div>
+            <div>
+              <label for="evTime">Time</label>
+              <input id="evTime" type="time">
+            </div>
+          </div>
+
+          <label for="evDescription">Description</label>
+          <textarea id="evDescription" rows="3" maxlength="1000" placeholder="What's it about? (optional)"></textarea>
+          <button type="submit" class="btn">Create event</button>
+        </form>
+      </section>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

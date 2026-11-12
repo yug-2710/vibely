@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>try{var t=localStorage.getItem("vibelyTheme");if(t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches)document.documentElement.dataset.theme="dark";}catch(e){}</script>
+  <title>Vibely – Music groups</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="music">
+  <script>try{if(!sessionStorage.getItem("vibelyUser")){window.addEventListener("pagereveal",e=>{try{if(e.viewTransition)e.viewTransition.skipTransition();}catch(_){}});location.replace("login.html");}}catch(e){}</script>
+  <header class="topbar">
+    <span class="logo">vibely</span>
+    <button type="button" class="nav-toggle" id="navToggle" aria-haspopup="true" aria-expanded="false" aria-controls="topbarNav" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="topbarNav">
+      <a href="dashboard.html">Home</a>
+      <a href="events.html">Events</a>
+      <a href="groups.html">Groups</a>
+      <a href="music.html" class="active">Music</a>
+      <a href="lostfound.html">Lost &amp; Found</a>
+      <a href="rides.html">Rides</a>
+      <a href="profile.html">Profile</a>
+    </nav>
+    <a href="messages.html" class="notif-btn" id="msgLink" aria-label="Messages">
+      <span aria-hidden="true">&#9993;</span><span id="msgBadge" class="notif-badge" hidden>0</span>
+    </a>
+    <a href="notifications.html" class="notif-btn" id="notifLink" aria-label="Notifications">
+      <span aria-hidden="true">&#128276;</span><span id="notifBadge" class="notif-badge" hidden>0</span>
+    </a>
+    <button id="logout" class="link">Log out</button>
+  </header>
+
+  <div class="search-bar">
+    <div class="search-wrap">
+      <input type="search" id="globalSearch" placeholder="Search Vibely" aria-label="Search people, events, groups, lost and found, rides" autocomplete="off">
+      <div class="search-results" id="searchResults" hidden></div>
+    </div>
+  </div>
+
+  <main class="home">
+    <!-- List of music groups -->
+    <section id="musicListView" hidden>
+      <h2>Music groups</h2>
+      <p class="sub">Listen to the same song at the same time. The person who starts a group is its leader and picks what plays.</p>
+      <h3 class="section-title">All music groups</h3>
+      <div id="musicList" class="group-grid"><p class="sub">Loading&hellip;</p></div>
+    </section>
+
+    <!-- One listening room -->
+    <section id="musicRoomView" hidden>
+      <a class="back-link" href="music.html">&larr; All music groups</a>
+      <h2 id="mName">Loading&hellip;</h2>
+      <p class="event-meta" id="mMeta"></p>
+      <p class="event-desc" id="mDesc" hidden></p>
+
+      <section class="card form-card" id="pendingPanel" hidden>
+        <h3>Join your group</h3>
+        <p class="sub" id="pendingText"></p>
+        <button type="button" class="btn" id="pendingJoinBtn">Join group</button>
+      </section>
+
+      <div class="music-stage" id="musicStage" hidden><div id="ytPlayer"></div></div>
+
+      <div class="music-bar">
+        <button type="button" class="btn" id="musicJoinBtn" hidden>Join the music</button>
+        <p class="sub" id="musicHint"></p>
+      </div>
+
+      <section class="card form-card" id="leaderPanel" hidden>
+        <h3>You&rsquo;re the leader</h3>
+        <p class="sub">Search YouTube and pick a result to play it for everyone in the group. Play, pause and seeking on your player are shared too.</p>
+        <form id="musicSearchForm" novalidate autocomplete="off">
+          <label for="musicSearch">Search YouTube</label>
+          <div class="music-search-row">
+            <input id="musicSearch" type="search" maxlength="100" placeholder="Song, artist or video">
+            <button type="submit" class="btn" id="musicSearchBtn">Search</button>
+          </div>
+        </form>
+        <div class="music-results" id="musicResults" hidden></div>
+        <p class="field-hint">Or paste a link instead:</p>
+        <form id="musicLinkForm" novalidate autocomplete="off">
+          <label for="musicLink">YouTube link</label>
+          <input id="musicLink" type="text" placeholder="https://www.youtube.com/watch?v=&hellip;">
+          <button type="submit" class="btn">Play for everyone</button>
+        </form>
+      </section>
+
+      <p class="notice" id="listenerNote" hidden></p>
+
+      <h3 class="section-title">Listeners <span class="seg-count" id="mCount"></span></h3>
+      <div id="mMembers"></div>
+
+      <div class="post-actions music-actions">
+        <button type="button" class="post-btn" id="musicLeaveBtn">Leave group</button>
+        <button type="button" class="post-btn danger" id="musicDeleteBtn" hidden>Delete group</button>
+      </div>
+    </section>
+  </main>
+
+  <button type="button" class="fab" id="openMusicForm" aria-haspopup="dialog" aria-controls="musicModal" aria-label="Start a music group" hidden>+</button>
+
+  <div class="modal-overlay" id="musicModal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="musicModalTitle">
+      <button type="button" class="modal-close" aria-label="Close">&times;</button>
+      <section class="card form-card">
+        <h3 id="musicModalTitle">Start a music group</h3>
+        <p class="sub">You&rsquo;ll be the leader. The group starts empty: join it within 10 minutes or it&rsquo;s deleted. You can hand leadership to another member any time.</p>
+        <form id="musicForm" novalidate autocomplete="off">
+          <label for="mgName">Group name</label>
+          <input id="mgName" type="text" maxlength="60" placeholder="e.g. Late night lo-fi" required>
+
+          <label for="mgDescription">Description</label>
+          <textarea id="mgDescription" rows="3" maxlength="300" placeholder="What are you listening to? (optional)"></textarea>
+          <button type="submit" class="btn">Create group</button>
+        </form>
+      </section>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

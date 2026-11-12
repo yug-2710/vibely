@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>try{var t=localStorage.getItem("vibelyTheme");if(t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches)document.documentElement.dataset.theme="dark";}catch(e){}</script>
+  <title>Vibely – Notifications</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="notifications">
+  <script>try{if(!sessionStorage.getItem("vibelyUser")){window.addEventListener("pagereveal",e=>{try{if(e.viewTransition)e.viewTransition.skipTransition();}catch(_){}});location.replace("login.html");}}catch(e){}</script>
+  <header class="topbar">
+    <span class="logo">vibely</span>
+    <button type="button" class="nav-toggle" id="navToggle" aria-haspopup="true" aria-expanded="false" aria-controls="topbarNav" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="topbarNav">
+      <a href="dashboard.html">Home</a>
+      <a href="events.html">Events</a>
+      <a href="groups.html">Groups</a>
+      <a href="music.html">Music</a>
+      <a href="lostfound.html">Lost &amp; Found</a>
+      <a href="rides.html">Rides</a>
+      <a href="profile.html">Profile</a>
+    </nav>
+    <a href="messages.html" class="notif-btn" id="msgLink" aria-label="Messages">
+      <span aria-hidden="true">&#9993;</span><span id="msgBadge" class="notif-badge" hidden>0</span>
+    </a>
+    <a href="notifications.html" class="notif-btn active" id="notifLink" aria-label="Notifications">
+      <span aria-hidden="true">&#128276;</span><span id="notifBadge" class="notif-badge" hidden>0</span>
+    </a>
+    <button id="logout" class="link">Log out</button>
+  </header>
+
+  <div class="search-bar">
+    <div class="search-wrap">
+      <input type="search" id="globalSearch" placeholder="Search Vibely" aria-label="Search people, events, groups, lost and found, rides" autocomplete="off">
+      <div class="search-results" id="searchResults" hidden></div>
+    </div>
+  </div>
+
+  <main class="home">
+    <div class="section-title" style="margin-top:0;">
+      <h2 style="margin:0;">Notifications</h2>
+      <button type="button" id="markAllRead" class="post-btn">Mark all as read</button>
+    </div>
+    <div id="notifList" class="notif-list"></div>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

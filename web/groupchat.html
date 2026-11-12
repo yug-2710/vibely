@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>try{var t=localStorage.getItem("vibelyTheme");if(t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches)document.documentElement.dataset.theme="dark";}catch(e){}</script>
+  <title>Vibely – Group chat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="groupchat">
+  <script>try{if(!sessionStorage.getItem("vibelyUser")){window.addEventListener("pagereveal",e=>{try{if(e.viewTransition)e.viewTransition.skipTransition();}catch(_){}});location.replace("login.html");}}catch(e){}</script>
+  <header class="topbar">
+    <span class="logo">vibely</span>
+    <button type="button" class="nav-toggle" id="navToggle" aria-haspopup="true" aria-expanded="false" aria-controls="topbarNav" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="topbarNav">
+      <a href="dashboard.html">Home</a>
+      <a href="events.html">Events</a>
+      <a href="groups.html" class="active">Groups</a>
+      <a href="music.html">Music</a>
+      <a href="lostfound.html">Lost &amp; Found</a>
+      <a href="rides.html">Rides</a>
+      <a href="profile.html">Profile</a>
+    </nav>
+    <a href="messages.html" class="notif-btn" id="msgLink" aria-label="Messages">
+      <span aria-hidden="true">&#9993;</span><span id="msgBadge" class="notif-badge" hidden>0</span>
+    </a>
+    <a href="notifications.html" class="notif-btn" id="notifLink" aria-label="Notifications">
+      <span aria-hidden="true">&#128276;</span><span id="notifBadge" class="notif-badge" hidden>0</span>
+    </a>
+    <button id="logout" class="link">Log out</button>
+  </header>
+
+  <main class="gchat-main">
+    <section class="thread-panel" aria-label="Group chat">
+      <div class="thread-head">
+        <a class="thread-back" id="gcBack" href="groups.html?tab=joined" aria-label="Back to group">&larr;</a>
+        <div class="thread-who">
+          <span class="post-name" id="gcName">Loading&hellip;</span>
+          <span class="post-handle" id="gcMeta"></span>
+        </div>
+      </div>
+      <div class="thread-messages" id="gChatMessages"></div>
+      <form class="thread-composer" id="gChatForm" autocomplete="off">
+        <input type="text" id="gChatInput" maxlength="2000" placeholder="Message the group&hellip;" required>
+        <button type="submit" class="send-btn" aria-label="Send message">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </form>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

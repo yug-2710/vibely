@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>try{var t=localStorage.getItem("vibelyTheme");if(t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches)document.documentElement.dataset.theme="dark";}catch(e){}</script>
+  <title>Vibely – Lost &amp; Found</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="lostfound">
+  <script>try{if(!sessionStorage.getItem("vibelyUser")){window.addEventListener("pagereveal",e=>{try{if(e.viewTransition)e.viewTransition.skipTransition();}catch(_){}});location.replace("login.html");}}catch(e){}</script>
+  <header class="topbar">
+    <span class="logo">vibely</span>
+    <button type="button" class="nav-toggle" id="navToggle" aria-haspopup="true" aria-expanded="false" aria-controls="topbarNav" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="topbarNav">
+      <a href="dashboard.html">Home</a>
+      <a href="events.html">Events</a>
+      <a href="groups.html">Groups</a>
+      <a href="music.html">Music</a>
+      <a href="lostfound.html" class="active">Lost &amp; Found</a>
+      <a href="rides.html">Rides</a>
+      <a href="profile.html">Profile</a>
+    </nav>
+    <a href="messages.html" class="notif-btn" id="msgLink" aria-label="Messages">
+      <span aria-hidden="true">&#9993;</span><span id="msgBadge" class="notif-badge" hidden>0</span>
+    </a>
+    <a href="notifications.html" class="notif-btn" id="notifLink" aria-label="Notifications">
+      <span aria-hidden="true">&#128276;</span><span id="notifBadge" class="notif-badge" hidden>0</span>
+    </a>
+    <button id="logout" class="link">Log out</button>
+  </header>
+
+  <div class="search-bar">
+    <div class="search-wrap">
+      <input type="search" id="globalSearch" placeholder="Search Vibely" aria-label="Search people, events, groups, lost and found, rides" autocomplete="off">
+      <div class="search-results" id="searchResults" hidden></div>
+    </div>
+  </div>
+
+  <main class="home">
+    <h2>Lost &amp; Found</h2>
+    <p class="sub">Lost something on campus, or found something that isn't yours? Post it here.</p>
+
+    <input type="search" id="lfSearch" class="member-search" placeholder="Search items, places or people" aria-label="Search lost and found" autocomplete="off" style="margin-top:1.2rem;">
+
+    <div class="seg" id="lfFilters" role="tablist" aria-label="Filter items">
+      <button type="button" class="seg-btn active" role="tab" data-filter="all" aria-selected="true">All <span class="seg-count" id="lfCount_all"></span></button>
+      <button type="button" class="seg-btn" role="tab" data-filter="lost" aria-selected="false">Lost <span class="seg-count" id="lfCount_lost"></span></button>
+      <button type="button" class="seg-btn" role="tab" data-filter="found" aria-selected="false">Found <span class="seg-count" id="lfCount_found"></span></button>
+      <button type="button" class="seg-btn" role="tab" data-filter="mine" aria-selected="false">My posts <span class="seg-count" id="lfCount_mine"></span></button>
+    </div>
+
+    <div id="lfList" class="lostfound-grid"></div>
+  </main>
+
+  <button type="button" class="fab" id="openLfForm" aria-haspopup="dialog" aria-controls="lfModal" aria-label="Post a lost or found item">+</button>
+
+  <div class="modal-overlay" id="lfModal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="lfModalTitle">
+      <button type="button" class="modal-close" aria-label="Close">&times;</button>
+      <section class="card form-card">
+        <h3 id="lfModalTitle">Post an item</h3>
+        <form id="lfForm" novalidate autocomplete="off">
+          <label for="lfType">This item is</label>
+          <select id="lfType">
+            <option value="lost">Lost — I'm missing this</option>
+            <option value="found">Found — I found this</option>
+          </select>
+
+          <label for="lfItem">Item</label>
+          <input id="lfItem" type="text" maxlength="80" placeholder="e.g. Blue water bottle" required>
+
+          <div class="two-col">
+            <div>
+              <label for="lfLocation">Location</label>
+              <input id="lfLocation" type="text" maxlength="120" placeholder="e.g. Library, 2nd floor">
+            </div>
+            <div>
+              <label for="lfDate">Date</label>
+              <input id="lfDate" type="date">
+            </div>
+          </div>
+
+          <label for="lfDescription">Description</label>
+          <textarea id="lfDescription" rows="3" maxlength="500" placeholder="Any details that'll help identify it (optional)"></textarea>
+
+          <label for="lfPhoto">Photo (optional)</label>
+          <input id="lfPhoto" type="file" accept="image/*">
+          <div class="composer-photo" id="lfPhotoBox" hidden>
+            <img class="composer-photo-preview" id="lfPhotoPreview" alt="">
+            <button type="button" class="composer-photo-remove" id="lfPhotoRemove" aria-label="Remove photo">&times;</button>
+          </div>
+
+          <button type="submit" class="btn">Post</button>
+        </form>
+      </section>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

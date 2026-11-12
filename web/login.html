@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>try{var t=localStorage.getItem("vibelyTheme");if(t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches)document.documentElement.dataset.theme="dark";}catch(e){}</script>
+  <title>Vibely – Log in</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="login" data-role="hostellor">
+  <script>try{if(sessionStorage.getItem("vibelyUser")){window.addEventListener("pagereveal",e=>{try{if(e.viewTransition)e.viewTransition.skipTransition();}catch(_){}});location.replace("dashboard.html");}if(sessionStorage.getItem("vibelyRole")==="dayscholar")document.body.dataset.role="dayscholar";}catch(e){}</script>
+  <main class="login">
+    <section class="brand">
+      <h1>vibely</h1>
+      <p id="tagline">Life after class starts down the corridor.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Welcome back</h2>
+      <p class="sub">Choose how you stay on campus.</p>
+
+      <div class="toggle" role="tablist" aria-label="Login type">
+        <button type="button" class="tab active" data-role="hostellor" role="tab">Hostellor</button>
+        <button type="button" class="tab" data-role="dayscholar" role="tab">Day scholar</button>
+      </div>
+
+      <form id="loginForm" novalidate>
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" placeholder="e.g. jitin.sharma" autocomplete="off" autocapitalize="none" spellcheck="false" required>
+
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" placeholder="Your password" autocomplete="new-password" required>
+        <a class="forgot" href="forgot.html">Forgot password?</a>
+
+        <p id="error" class="error" role="alert" hidden></p>
+        <button type="submit" class="btn">Log in as <span id="roleName">hostellor</span></button>
+      </form>
+      <a class="btn btn-outline" href="register.html">Create account</a>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

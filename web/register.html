@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>try{var t=localStorage.getItem("vibelyTheme");if(t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches)document.documentElement.dataset.theme="dark";}catch(e){}</script>
+  <title>Vibely – Create account</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="register" data-role="hostellor">
+  <script>try{if(sessionStorage.getItem("vibelyUser")){window.addEventListener("pagereveal",e=>{try{if(e.viewTransition)e.viewTransition.skipTransition();}catch(_){}});location.replace("dashboard.html");}if(sessionStorage.getItem("vibelyRole")==="dayscholar")document.body.dataset.role="dayscholar";}catch(e){}</script>
+  <main class="login">
+    <section class="brand">
+      <h1>vibely</h1>
+      <p id="tagline">Meet your block before the first mess bell.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Create your account</h2>
+      <p class="sub">Pick how you stay on campus, then set up your profile.</p>
+
+      <div class="toggle" role="tablist" aria-label="Account type">
+        <button type="button" class="tab active" data-role="hostellor" role="tab">Hostellor</button>
+        <button type="button" class="tab" data-role="dayscholar" role="tab">Day scholar</button>
+      </div>
+
+      <div class="reg-progress" aria-hidden="true">
+        <span class="reg-dot active" data-step="1"></span><span class="reg-dot" data-step="2"></span>
+      </div>
+      <p class="reg-step-label" id="regStepLabel">Step 1 of 2 &middot; Your account</p>
+
+      <form id="registerForm" novalidate autocomplete="off">
+        <div class="reg-step" data-step="1">
+          <label for="name">Full name</label>
+          <input id="name" type="text" placeholder="e.g. Jitin Sharma" maxlength="40" required>
+
+          <label for="username">Username</label>
+          <input id="username" type="text" placeholder="e.g. jitin.sharma" maxlength="30" autocomplete="off" autocapitalize="none" spellcheck="false" required>
+          <p class="field-hint">1–30 characters: letters, numbers, periods and underscores. Can't start or end with a period or have two periods in a row.</p>
+
+          <label for="password">Password</label>
+          <input id="password" type="password" placeholder="At least 6 characters" autocomplete="new-password" required>
+
+          <label for="confirm">Confirm password</label>
+          <input id="confirm" type="password" placeholder="Type it again" autocomplete="new-password" required>
+        </div>
+
+        <div class="reg-step" data-step="2" hidden>
+          <label for="gender">Gender</label>
+          <select id="gender">
+            <option value="">Select gender</option>
+            <option value="female">Female</option>
+            <option value="male">Male</option>
+          </select>
+
+          <label for="hostel" id="detailLabel">Hostel</label>
+          <select id="hostel" hidden></select>
+          <input id="detail" type="text" placeholder="e.g. Ambala Cantt" maxlength="60" hidden>
+
+          <label for="question">Security question</label>
+          <select id="question"></select>
+
+          <label for="answer">Your answer</label>
+          <input id="answer" type="text" placeholder="Used to reset your password" maxlength="60" autocomplete="off" required>
+          <p class="field-hint">If you ever forget your password, this is how you get back in. Answers aren't case-sensitive.</p>
+        </div>
+
+        <p id="error" class="error" role="alert" hidden></p>
+        <p id="success" class="success" role="status" hidden></p>
+        <button type="submit" class="btn" id="regNext"><span id="regNextText">Next</span><span id="regCreate" hidden>Create <span id="roleName">hostellor</span> account</span></button>
+        <button type="button" class="btn btn-outline" id="regBack" hidden>Back</button>
+      </form>
+      <p class="hint">Already have an account? <a href="login.html">Log in</a></p>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

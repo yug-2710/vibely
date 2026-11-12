@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>try{var t=localStorage.getItem("vibelyTheme");if(t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches)document.documentElement.dataset.theme="dark";}catch(e){}</script>
+  <title>Vibely – Reset password</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="forgot" data-role="hostellor">
+  <script>try{if(sessionStorage.getItem("vibelyRole")==="dayscholar")document.body.dataset.role="dayscholar";}catch(e){}</script>
+  <main class="login">
+    <section class="brand">
+      <h1>vibely</h1>
+      <p id="tagline">Locked out? It happens to everyone. Let's get you back in.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Reset your password</h2>
+      <p class="sub" id="step">Enter your username and we'll ask your security question.</p>
+
+      <form id="findForm" novalidate autocomplete="off">
+        <label for="username">Username</label>
+        <input id="username" type="text" placeholder="e.g. jitin.sharma" autocapitalize="none" spellcheck="false" required>
+        <button type="submit" class="btn">Continue</button>
+      </form>
+
+      <form id="resetForm" novalidate autocomplete="off" hidden>
+        <label>Your security question</label>
+        <p id="questionText" class="question"></p>
+
+        <label for="answer">Your answer</label>
+        <input id="answer" type="text" placeholder="Your answer" autocomplete="off" required>
+
+        <label for="newPassword">New password</label>
+        <input id="newPassword" type="password" placeholder="At least 6 characters" autocomplete="new-password" required>
+
+        <label for="confirm">Confirm new password</label>
+        <input id="confirm" type="password" placeholder="Type it again" autocomplete="new-password" required>
+
+        <button type="submit" class="btn">Reset password</button>
+      </form>
+
+      <p id="error" class="error" role="alert" hidden></p>
+      <p id="success" class="success" role="status" hidden></p>
+      <p class="hint">Remembered it? <a href="login.html">Log in</a></p>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

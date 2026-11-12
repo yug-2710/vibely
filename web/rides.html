@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>try{var t=localStorage.getItem("vibelyTheme");if(t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches)document.documentElement.dataset.theme="dark";}catch(e){}</script>
+  <title>Vibely – Rides</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="rides">
+  <script>try{if(!sessionStorage.getItem("vibelyUser")){window.addEventListener("pagereveal",e=>{try{if(e.viewTransition)e.viewTransition.skipTransition();}catch(_){}});location.replace("login.html");}}catch(e){}</script>
+  <header class="topbar">
+    <span class="logo">vibely</span>
+    <button type="button" class="nav-toggle" id="navToggle" aria-haspopup="true" aria-expanded="false" aria-controls="topbarNav" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="topbarNav">
+      <a href="dashboard.html">Home</a>
+      <a href="events.html">Events</a>
+      <a href="groups.html">Groups</a>
+      <a href="music.html">Music</a>
+      <a href="lostfound.html">Lost &amp; Found</a>
+      <a href="rides.html" class="active">Rides</a>
+      <a href="profile.html">Profile</a>
+    </nav>
+    <a href="messages.html" class="notif-btn" id="msgLink" aria-label="Messages">
+      <span aria-hidden="true">&#9993;</span><span id="msgBadge" class="notif-badge" hidden>0</span>
+    </a>
+    <a href="notifications.html" class="notif-btn" id="notifLink" aria-label="Notifications">
+      <span aria-hidden="true">&#128276;</span><span id="notifBadge" class="notif-badge" hidden>0</span>
+    </a>
+    <button id="logout" class="link">Log out</button>
+  </header>
+
+  <div class="search-bar">
+    <div class="search-wrap">
+      <input type="search" id="globalSearch" placeholder="Search Vibely" aria-label="Search people, events, groups, lost and found, rides" autocomplete="off">
+      <div class="search-results" id="searchResults" hidden></div>
+    </div>
+  </div>
+
+  <main class="home">
+    <h2>Rides</h2>
+    <p class="sub">Share a ride, or find one &mdash; handy for day scholars' commute.</p>
+
+    <h3 class="section-title">All rides</h3>
+    <div id="rideList" class="ride-grid"></div>
+  </main>
+
+  <button type="button" class="fab" id="openRideForm" aria-haspopup="dialog" aria-controls="rideModal" aria-label="Post a ride">+</button>
+
+  <div class="modal-overlay" id="rideModal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="rideModalTitle">
+      <button type="button" class="modal-close" aria-label="Close">&times;</button>
+      <section class="card form-card">
+        <h3 id="rideModalTitle">Post a ride</h3>
+        <form id="rideForm" novalidate autocomplete="off">
+          <label for="rdType">This is</label>
+          <select id="rdType">
+            <option value="offer">A ride I'm offering</option>
+            <option value="request">A ride I'm looking for</option>
+          </select>
+
+          <div class="two-col">
+            <div>
+              <label for="rdFrom">From</label>
+              <input id="rdFrom" type="text" maxlength="120" placeholder="e.g. Ambala Cantt" required>
+            </div>
+            <div>
+              <label for="rdTo">To</label>
+              <input id="rdTo" type="text" maxlength="120" placeholder="e.g. Campus main gate" required>
+            </div>
+          </div>
+
+          <div class="two-col">
+            <div>
+              <label for="rdDate">Date</label>
+              <input id="rdDate" type="date" required>
+            </div>
+            <div>
+              <label for="rdTime">Time</label>
+              <input id="rdTime" type="time">
+            </div>
+          </div>
+
+          <label for="rdSeats">Seats available <span class="field-hint" style="display:inline;margin:0;">(offers only)</span></label>
+          <input id="rdSeats" type="number" min="1" step="1" placeholder="Leave blank if not applicable">
+
+          <label for="rdNotes">Notes</label>
+          <textarea id="rdNotes" rows="2" maxlength="300" placeholder="Split fuel cost, pickup point, etc. (optional)"></textarea>
+          <button type="submit" class="btn">Post ride</button>
+        </form>
+      </section>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

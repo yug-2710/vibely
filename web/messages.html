@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>try{var t=localStorage.getItem("vibelyTheme");if(t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches)document.documentElement.dataset.theme="dark";}catch(e){}</script>
+  <title>Vibely – Messages</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="messages">
+  <script>try{if(!sessionStorage.getItem("vibelyUser")){window.addEventListener("pagereveal",e=>{try{if(e.viewTransition)e.viewTransition.skipTransition();}catch(_){}});location.replace("login.html");}}catch(e){}</script>
+  <header class="topbar">
+    <span class="logo">vibely</span>
+    <button type="button" class="nav-toggle" id="navToggle" aria-haspopup="true" aria-expanded="false" aria-controls="topbarNav" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="topbarNav">
+      <a href="dashboard.html">Home</a>
+      <a href="events.html">Events</a>
+      <a href="groups.html">Groups</a>
+      <a href="music.html">Music</a>
+      <a href="lostfound.html">Lost &amp; Found</a>
+      <a href="rides.html">Rides</a>
+      <a href="profile.html">Profile</a>
+    </nav>
+    <a href="messages.html" class="notif-btn active" id="msgLink" aria-label="Messages">
+      <span aria-hidden="true">&#9993;</span><span id="msgBadge" class="notif-badge" hidden>0</span>
+    </a>
+    <a href="notifications.html" class="notif-btn" id="notifLink" aria-label="Notifications">
+      <span aria-hidden="true">&#128276;</span><span id="notifBadge" class="notif-badge" hidden>0</span>
+    </a>
+    <button id="logout" class="link">Log out</button>
+  </header>
+
+  <div class="search-bar">
+    <div class="search-wrap">
+      <input type="search" id="globalSearch" placeholder="Search Vibely" aria-label="Search people, events, groups, lost and found, rides" autocomplete="off">
+      <div class="search-results" id="searchResults" hidden></div>
+    </div>
+  </div>
+
+  <main class="home">
+    <h2>Messages</h2>
+    <p class="sub">Direct messages with people on campus. Visit a profile and tap Message to start a new one.</p>
+
+    <div class="messages-layout">
+      <section class="conv-list" id="convList" aria-label="Conversations">
+        <p class="sub conv-empty">Loading&hellip;</p>
+      </section>
+
+      <section class="thread-panel" id="threadPanel" hidden aria-label="Conversation">
+        <div class="thread-head">
+          <button type="button" class="thread-back" id="threadBack" aria-label="Back to conversations">&larr;</button>
+          <div class="thread-who">
+            <a id="threadName" class="post-name" href="#"></a>
+            <a id="threadHandle" class="post-handle" href="#"></a>
+          </div>
+          <button type="button" class="thread-clear" id="threadClear" aria-label="Delete conversation" title="Delete conversation">&#128465;</button>
+        </div>
+        <div class="thread-messages" id="threadMessages"></div>
+        <form class="thread-composer" id="threadForm" autocomplete="off">
+          <input type="text" id="threadInput" maxlength="2000" placeholder="Write a message&hellip;" required>
+          <button type="submit" class="send-btn" aria-label="Send message">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </form>
+      </section>
+
+      <section class="thread-panel thread-placeholder" id="threadPlaceholder" aria-label="No conversation selected">
+        <div class="conv-empty">
+          <span class="empty-icon" aria-hidden="true">&#128172;</span>
+          <p class="sub">Select a conversation to start chatting.<br>Or visit someone&rsquo;s profile and tap Message.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>try{var t=localStorage.getItem("vibelyTheme");if(t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches)document.documentElement.dataset.theme="dark";}catch(e){}</script>
+  <title>Vibely – Group</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="group">
+  <script>try{if(!sessionStorage.getItem("vibelyUser")){window.addEventListener("pagereveal",e=>{try{if(e.viewTransition)e.viewTransition.skipTransition();}catch(_){}});location.replace("login.html");}}catch(e){}</script>
+  <header class="topbar">
+    <span class="logo">vibely</span>
+    <button type="button" class="nav-toggle" id="navToggle" aria-haspopup="true" aria-expanded="false" aria-controls="topbarNav" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="topbarNav">
+      <a href="dashboard.html">Home</a>
+      <a href="events.html">Events</a>
+      <a href="groups.html" class="active">Groups</a>
+      <a href="music.html">Music</a>
+      <a href="lostfound.html">Lost &amp; Found</a>
+      <a href="rides.html">Rides</a>
+      <a href="profile.html">Profile</a>
+    </nav>
+    <a href="messages.html" class="notif-btn" id="msgLink" aria-label="Messages">
+      <span aria-hidden="true">&#9993;</span><span id="msgBadge" class="notif-badge" hidden>0</span>
+    </a>
+    <a href="notifications.html" class="notif-btn" id="notifLink" aria-label="Notifications">
+      <span aria-hidden="true">&#128276;</span><span id="notifBadge" class="notif-badge" hidden>0</span>
+    </a>
+    <button id="logout" class="link">Log out</button>
+  </header>
+
+  <div class="search-bar">
+    <div class="search-wrap">
+      <input type="search" id="globalSearch" placeholder="Search Vibely" aria-label="Search people, events, groups, lost and found, rides" autocomplete="off">
+      <div class="search-results" id="searchResults" hidden></div>
+    </div>
+  </div>
+
+  <main class="home group-page">
+    <a class="back-link" href="groups.html?tab=joined">&larr; All groups</a>
+
+    <section class="group-hero">
+      <div class="group-banner" aria-hidden="true"></div>
+      <div class="group-hero-body">
+        <span class="group-avatar" id="gAvatar" aria-hidden="true"></span>
+        <div class="group-hero-text">
+          <h2 id="gName">Loading&hellip;</h2>
+          <p class="group-chips" id="gMeta"></p>
+          <p class="event-desc" id="gDesc" hidden></p>
+        </div>
+        <button type="button" class="dd-btn dd-btn-lg" id="gMenuBtn" aria-label="Group options" aria-haspopup="menu" aria-expanded="false" hidden>&#8942;</button>
+      </div>
+    </section>
+
+    <div class="seg" id="gTabs" role="tablist" aria-label="Group sections">
+      <button type="button" class="seg-btn active" role="tab" data-tab="posts" aria-selected="true">Posts</button>
+      <button type="button" class="seg-btn" role="tab" data-tab="members" aria-selected="false">Members <span class="seg-count" id="memCount"></span></button>
+      <button type="button" class="seg-btn" role="tab" data-tab="requests" id="reqTabBtn" aria-selected="false" hidden>Requests <span class="seg-count" id="reqCount" hidden></span></button>
+    </div>
+
+    <section id="tab-posts" aria-label="Posts">
+      <p class="notice" id="postsNote" hidden>&#128226; Only group admins can post here. You can like and comment on their posts.</p>
+      <div class="feed-block" id="postsRoot">
+        <form class="post-composer composer-card" id="gComposer" autocomplete="off">
+          <div class="composer-head">
+            <span id="gComposerAvatar" aria-hidden="true"></span>
+            <textarea rows="3" maxlength="1000" placeholder="Share an update or upload a photo with the group&hellip;" required></textarea>
+          </div>
+          <div class="composer-photo" hidden>
+            <img class="composer-photo-preview" alt="">
+            <button type="button" class="composer-photo-remove" aria-label="Remove photo">&times;</button>
+          </div>
+          <div class="composer-actions">
+            <label class="composer-photo-btn" title="Add a photo">
+              <input type="file" accept="image/*" hidden>
+              <span aria-hidden="true">&#128247;</span>
+            </label>
+            <span class="char-hint">Admins only &middot; up to 1000 characters</span>
+            <button type="submit" class="btn-small">Post</button>
+          </div>
+        </form>
+        <div class="feed-list"></div>
+      </div>
+    </section>
+
+    <section id="tab-members" aria-label="Members" hidden>
+      <input type="search" id="memberSearch" class="member-search" placeholder="Search members" aria-label="Search members" autocomplete="off">
+      <div id="gMembers"></div>
+    </section>
+
+    <section id="tab-requests" aria-label="Join requests" hidden>
+      <div id="gRequests"></div>
+    </section>
+  </main>
+
+  <a class="fab fab-chat" id="openGroupChat" href="groups.html" aria-label="Open group chat" title="Group chat" hidden>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>
